@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Link ,Outlet} from 'react-route
 
 import {
     DesktopOutlined,
-    FileOutlined,
+    // FileOutlined,
     PieChartOutlined,
-    TeamOutlined,
+    // TeamOutlined,
 
 } from '@ant-design/icons';
 import {Layout, Menu, theme } from 'antd';
@@ -26,8 +26,6 @@ const items = [
     getItem('Liste des taches', 'list', <PieChartOutlined />),
     getItem('Ajouter une tache', 'ajout', <DesktopOutlined />),
 
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
 ];
 const App = () => {
 
@@ -42,12 +40,14 @@ const App = () => {
                 style={{
                     minHeight: '100vh',
                     minWidth: '100vh',
+                    // objectFit:"contain"
                 }}
             >
                 <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                     <div className="demo-logo-vertical" />
                     <nav>
-                        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                        <Menu  theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                            <Menu.Item disabled className="ms-2 fw-bolder text-primary">Gestion Des Taches</Menu.Item>
                             {/* Update the Menu items to use Links */}
                             {items.map((item) =>
 

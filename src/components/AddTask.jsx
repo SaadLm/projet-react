@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Form, Input, Button, Space, message } from 'antd';
 
 const AddForm = () => {
     const [form] = Form.useForm();
 
+    // const [data, setData] = useState([]);
+    // useEffect(() => {
+        // Check if data exists in localStorage
+
     const onFinish = (values) => {
-        // Submit data logic
-        console.log('Form Submitted:', values);
+        const storedData = localStorage.getItem('tableData');
+        const parsedData = storedData ? JSON.parse(storedData) : [];  // Parse or fallback to empty array if null
+        const counter = parsedData.length
+        values.key=counter
+        values.tags=["En Attente"]
+        // console.log('Form Submitted:', values);
         message.success('Item added successfully!');
+        parsedData.push(values)
+        localStorage.setItem('tableData', JSON.stringify(parsedData));
         form.resetFields();
     };
 
@@ -24,20 +34,14 @@ const AddForm = () => {
             style={{ maxWidth: '600px', margin: '0 auto' }}
         >
             <Form.Item
-                name="title"
+                name="name"
                 label="Title"
                 rules={[{ required: true, message: 'Please input the title!' }]}
             >
                 <Input placeholder="Enter the title" />
             </Form.Item>
 
-            <Form.Item
-                name="description"
-                label="Description"
-                rules={[{ required: true, message: 'Please input the description!' }]}
-            >
-                <Input.TextArea rows={4} placeholder="Enter a description" />
-            </Form.Item>
+
 
             <Form.Item>
                 <Space>
