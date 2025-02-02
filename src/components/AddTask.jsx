@@ -35,7 +35,7 @@ const AddForm = () => {
         >
             <Form.Item
                 name="name"
-                label="Title"
+                label="Titre"
                 rules={[{ required: true, message: 'Please input the title!' }]}
             >
                 <Input placeholder="Enter the title" />
